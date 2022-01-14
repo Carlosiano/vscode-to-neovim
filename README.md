@@ -1,48 +1,69 @@
-# NVCode
+# Nvim Studio Code
 
 ![NVCode pic](./utils/images/nvim.png)
 
-## Install in one command
-
-The following will install this config if you have an existing config it will move it to `~/.config/nvim.old`
-
-This script only supports Mac, Ubuntu and Arch
-
-```
-bash <(curl -s https://raw.githubusercontent.com/ChristianChiarulli/nvim/master/utils/install.sh)
-```
-
 ## Install Neovim
 
-- Mac
+### Windows
 
-  ```
-  brew install neovim
+Hanya suport Windows 8+ . Windows 7 dan versi dibawahnya tidak suported.
 
-  brew install --HEAD neovim # Latest
-  ```
+#### [Chocolatey](https://chocolatey.org)
 
-- Ubuntu
+- **Release (v0.5):** `choco install neovim` (gunakan -y untuk automatis skip dari pesan konfirmasi)
+- **Development (pre-release):** `choco install neovim --pre`
 
-  ```
-  sudo apt install neovim
-  ```
+#### [Scoop](https://scoop.sh/)
 
-- Arch
-
-  ```
-  sudo pacman -S neovim
-
-  yay -S neovim-git # Latest
-  ```
-
-## Clone this repo into your config
+- **Release:** `scoop install neovim`
+- **Development (pre-release):**
 
 ```
-git clone https://github.com/ChristianChiarulli/nvim.git ~/.config/nvim
+scoop bucket add versions
+scoop install neovim-nightly
 ```
 
-## Install python & node support
+### Mac
+
+```
+brew install neovim
+
+brew install --HEAD neovim # Latest
+```
+
+### Ubuntu
+
+```
+sudo apt install neovim
+```
+
+### Arch
+
+```
+sudo pacman -S neovim
+
+yay -S neovim-git # Latest
+```
+
+## Install neovim plugin
+
+PILIH BERDASARKAN OPERATING SYSTEM
+
+- Linux/Mac
+
+  ```
+  git clone https://github.com/Carlosiano/vscode-to-neovim.git ~/.config/nvim
+
+  ```
+
+- Windows
+
+  ```
+  git clone https://github.com/Carlosiano/vscode-to-neovim.git ~/.AppData/Local/nvim
+
+  ```
+
+# Install python & node support
 
 ```
 pip install pynvim
@@ -66,7 +87,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 ## Install clipboard support
 
-- On Mac pbcopy should be builtin
+- Di Mac pbcopy biasanya sudah ada
 
 - Ubuntu
 
@@ -80,19 +101,25 @@ export PATH=$HOME/.local/bin:$PATH
   sudo pacman -S xsel
   ```
 
-## (Optional) Install python & node support using virtual environments
+## (Optional) Install python & node support menggunakan virtual environments
 
-Make sure to add these paths somewhere in your config
+Pastikan untuk menambahkan path ini ke file init.vim kalian
 
 ```
-let g:python3_host_prog = expand("<path to python with pynvim installed>")
-let g:python3_host_prog = expand("~/.miniconda/envs/neovim/bin/python3.8") " <- example
+let g:python3_host_prog = expand("<path / lokasi python3 terinstall>")
 
-let g:node_host_prog = expand("<path to node with neovim installed>")
-let g:node_host_prog = expand("~/.nvm/versions/node/v12.16.1/bin/neovim-node-host") " <- example
+let g:node_host_prog = expand("<path / lokasi nodejs terinstall>")
 ```
 
-## List of programs you should install
+contoh
+
+```
+let g:python3_host_prog = expand("~/.miniconda/envs/neovim/bin/python3.8")
+
+let g:node_host_prog = expand("~/.nvm/versions/node/v12.16.1/bin/neovim-node-host")
+```
+
+## Daftar Program yang mungkin harus kamu
 
 - ranger
 - ueberzug

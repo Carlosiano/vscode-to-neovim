@@ -1,8 +1,121 @@
-# Nvim Studio Code
+# VISUAL STUDIO CODE TO VIM/NEOVIM
 
-![NVCode pic](./utils/images/nvim.png)
+## 1. Install Vscodium
 
-## Install Neovim
+Kita akan banyak mengubah `settings.json` dan `keybindings.json`.
+
+Jadi untuk menjaga setingan normal dari vscode tetap ada, kita akan mengubah `settings.json` dan `keybindings.json` yang ada pada vscodium.
+
+Sehingga kita punya konfigurasi normal vscode kita dan konfigurasi neovim pada vscodium kita
+
+### [Official Website](https://vscodium.com/#install)
+
+### Windows
+
+#### [Windows Package Manager (WinGet)](https://github.com/microsoft/winget-cli)
+```
+winget install vscodium
+```
+
+#### [Chocolatey](https://chocolatey.org)
+```
+choco install vscodium
+```
+
+#### [Scoop](https://scoop.sh/)
+```
+scoop bucket add extras
+scoop install vscodium
+```
+
+### MacOs
+
+#### [Homebrew]()
+```
+brew install --cask vscodium
+```
+
+### Linux
+
+#### Install mennggunakan [snapd](https://snapcraft.io/docs/installing-snapd)
+```
+snap install codium --classic
+```
+
+#### Parrot OS
+```
+sudo apt update && sudo apt install codium
+```
+
+#### Debian / Ubuntu
+
+- Tambah GPG key dari repository vscodium
+    ```
+    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+    ```
+
+- Tambah repository dari vscodium
+    ```
+    echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+    ```
+
+- Update & Install vscodium
+    ```
+    sudo apt update && sudo apt install codium
+    ```
+    
+#### Fedora / Centos / OpenSUSE
+
+- Tambah GPG key dari repository vscodium
+    ```
+    sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+    ```
+    
+- Tambah repository dari vscodium
+    - Fedora/RHEL
+        ```
+        printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
+        ```
+    - openSUSE/SUSE
+        ```
+        printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/zypp/repos.d/vscodium.repo
+        ```
+- Install vscodium
+    - Fedora/RHEL
+        ```
+        sudo dnf install codium
+        ```
+    - OpenSUSE/SUSE
+        ```
+        sudo zypper in codium
+        ```
+
+#### Nix(OS)
+```
+nix-env -iA nixpkgs.vscodium
+```
+
+#### Arch Linux
+- Aura
+    ```
+    sudo aura -A vscodium-bin
+    ```
+- Yay
+    ```
+    yay -S vscodium-bin
+    ```
+
+#### Flatpak Option
+```
+flatpak install flathub com.vscodium.codium
+```
+
+ 
+
+## 2. Install Neovim
 
 ### Windows
 
@@ -17,53 +130,50 @@ Hanya suport Windows 8+ . Windows 7 dan versi dibawahnya tidak suported.
 
 - **Release:** `scoop install neovim`
 - **Development (pre-release):**
-
-```
-scoop bucket add versions
-scoop install neovim-nightly
-```
-
+  ```
+  scoop bucket add versions
+  scoop install neovim-nightly
+  ```
 ### Mac
 
-```
-brew install neovim
+#### [Homebrew](https://scoop.sh/)
 
-brew install --HEAD neovim # Latest
-```
+- **Release:** `brew install neovim`
+
+- **Development (pre-release):** `brew install --HEAD neovim # Latest`
 
 ### Ubuntu
 
-```
-sudo apt install neovim
-```
+- **Release:** `sudo apt install neovim`
+
+- **Development (pre-release):** `NANTI DI ISI`
 
 ### Arch
 
-```
-sudo pacman -S neovim
+- **Release:** `sudo pacman -S neovim`
 
-yay -S neovim-git # Latest
-```
+- **Development (pre-release):** `yay -S neovim-git # Latest`
 
-## Install neovim plugin
 
-PILIH BERDASARKAN OPERATING SYSTEM
+## 3. Install neovim plugin
+
+
+PASTIKAN TIDAK ADA FOLDER `nvim` PADA `~/.config` DI LINUX/MAC ATAU PADA `~/AppData/Local` DI WINDOWS
 
 - Linux/Mac
 
   ```
   git clone https://github.com/Carlosiano/vscode-to-neovim.git ~/.config/nvim
-
   ```
 
 - Windows
 
   ```
   git clone https://github.com/Carlosiano/vscode-to-neovim.git ~/.AppData/Local/nvim
-
   ```
+  
 
-# Install python & node support
+## 4. Install python & node support
 
 ```
 pip install pynvim
@@ -71,18 +181,6 @@ pip install pynvim
 
 ```
 npm i -g neovim
-```
-
-## Install Neovim remote
-
-```
-pip install neovim-remote
-```
-
-This will install `nvr` to `~/.local/bin` so you will need to add the following to your `bashrc` or `zshrc`
-
-```
-export PATH=$HOME/.local/bin:$PATH
 ```
 
 ## Install clipboard support
@@ -112,7 +210,6 @@ let g:node_host_prog = expand("<path / lokasi nodejs terinstall>")
 ```
 
 contoh
-
 ```
 let g:python3_host_prog = expand("~/.miniconda/envs/neovim/bin/python3.8")
 
